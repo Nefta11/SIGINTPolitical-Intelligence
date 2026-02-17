@@ -12,15 +12,15 @@ const PROVIDERS = {
   claude: {
     url: 'https://api.anthropic.com/v1/messages',
     models: {
-      large: 'claude-sonnet-4-20250514',
-      small: 'claude-haiku-3-20241022'
+      large: 'claude-3-5-sonnet-20241022',
+      small: 'claude-3-haiku-20240307'
     }
   },
   gemini: {
     url: 'https://generativelanguage.googleapis.com/v1beta/models',
     models: {
-      large: 'gemini-1.5-pro-latest',
-      small: 'gemini-1.5-flash-latest'
+      large: 'gemini-1.5-pro',
+      small: 'gemini-1.5-flash'
     }
   }
 };
