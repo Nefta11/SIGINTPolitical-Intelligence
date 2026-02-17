@@ -42,7 +42,7 @@ export async function callClaude(systemPrompt, userPrompt, useSearch = false, re
 
   const tools = useSearch ? [{ type: "web_search_20250305", name: "web_search", max_uses: 2 }] : [];
   const body = {
-    model: useSmallModel ? "claude-haiku-3-20241022" : "claude-sonnet-4-20250514", // Modelo fallback más económico
+    model: useSmallModel ? "claude-haiku-4-5-20251001" : "claude-sonnet-4-6",
     max_tokens: useSmallModel ? 8000 : 10000, // Reducir tokens para evitar límites
     system: systemPrompt,
     messages: [{ role: "user", content: userPrompt }],

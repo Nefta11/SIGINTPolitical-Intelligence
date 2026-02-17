@@ -54,13 +54,17 @@ app.post('/api/claude', async (req, res) => {
   }
 
   try {
+    const forwardHeaders = {
+      'Content-Type': 'application/json',
+      'x-api-key': API_KEY,
+      'anthropic-version': '2023-06-01',
+    };
+    if (req.headers['anthropic-beta']) {
+      forwardHeaders['anthropic-beta'] = req.headers['anthropic-beta'];
+    }
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': API_KEY,
-        'anthropic-version': '2023-06-01',
-      },
+      headers: forwardHeaders,
       body: JSON.stringify(req.body),
     });
 

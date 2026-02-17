@@ -12,8 +12,8 @@ const PROVIDERS = {
   claude: {
     url: 'https://api.anthropic.com/v1/messages',
     models: {
-      large: 'claude-3-5-sonnet-20241022',
-      small: 'claude-3-haiku-20240307'
+      large: 'claude-sonnet-4-6',
+      small: 'claude-haiku-4-5-20251001'
     }
   },
   gemini: {
@@ -59,13 +59,17 @@ export async function callClaude(systemPrompt, userPrompt, useSearch = false, re
   };
 
   try {
-    const headers = API_MODE === 'proxy' 
-      ? { 'Content-Type': 'application/json' }
+    const headers = API_MODE === 'proxy'
+      ? {
+          'Content-Type': 'application/json',
+          ...(useSearch ? { 'anthropic-beta': 'web-search-2025-03-05' } : {}),
+        }
       : {
           'Content-Type': 'application/json',
           'x-api-key': ANTHROPIC_API_KEY,
           'anthropic-version': '2023-06-01',
           'anthropic-dangerous-direct-browser-access': 'true',
+          ...(useSearch ? { 'anthropic-beta': 'web-search-2025-03-05' } : {}),
         };
 
     const url = API_MODE === 'proxy' 
