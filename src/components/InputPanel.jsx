@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function InputPanel({ territory, setTerritory, criteria, setCriteria, running, onRun }) {
+export default function InputPanel({ territory, setTerritory, criteria, setCriteria, running, onRun, hasReport, onClear }) {
   const [showApiHelp, setShowApiHelp] = useState(false);
   const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
   const hasValidKey = apiKey && apiKey !== 'sk-ant-TU-API-KEY-AQUI';
@@ -145,9 +145,27 @@ export default function InputPanel({ territory, setTerritory, criteria, setCrite
       {hasValidKey && !running && (
         <div style={{
           marginTop: 10, fontSize: 12, color: "var(--text-4)",
-          textAlign: "center",
+          textAlign: "center", display: "flex", alignItems: "center",
+          justifyContent: "center", gap: 16,
         }}>
-          Costo estimado ~$0.15–0.30 USD por ejecución
+          <span>Costo estimado ~$0.15–0.30 USD por ejecución</span>
+          {hasReport && (
+            <button
+              onClick={onClear}
+              style={{
+                background: "none", border: "none",
+                color: "var(--text-4)", fontSize: 12,
+                cursor: "pointer", padding: 0,
+                fontFamily: "var(--sans)",
+                textDecoration: "underline",
+                transition: "color 0.15s",
+              }}
+              onMouseEnter={e => e.currentTarget.style.color = "var(--red)"}
+              onMouseLeave={e => e.currentTarget.style.color = "var(--text-4)"}
+            >
+              Limpiar reporte actual
+            </button>
+          )}
         </div>
       )}
     </div>

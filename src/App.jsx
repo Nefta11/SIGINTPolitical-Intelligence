@@ -32,6 +32,7 @@ export default function App() {
     reportRef,
     runAgenticPipeline,
     loadReport,
+    clearReport,
   } = useAgenticPipeline();
 
   const reportElementRef = useRef(null);
@@ -53,6 +54,8 @@ export default function App() {
           setCriteria={setCriteria}
           running={running}
           onRun={runAgenticPipeline}
+          hasReport={!!report}
+          onClear={clearReport}
         />
         <ReportHistory onLoadReport={loadReport} currentReport={report} />
         <AgentGrid agentStates={agentStates} agentLogs={agentLogs} running={running} />

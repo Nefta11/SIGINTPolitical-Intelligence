@@ -11,8 +11,8 @@ import { saveReport } from '../services/storage';
 import { validatePromptCompliance } from '../utils/promptCompliance';
 
 export function useAgenticPipeline() {
-  const [territory, setTerritory] = useState("Colombia");
-  const [criteria, setCriteria] = useState("Anti-petrismo");
+  const [territory, setTerritory] = useState("");
+  const [criteria, setCriteria] = useState("");
   const [running, setRunning] = useState(false);
   const [agentStates, setAgentStates] = useState({});
   const [agentLogs, setAgentLogs] = useState({});
@@ -35,6 +35,13 @@ export function useAgenticPipeline() {
 
   const setAgentStatus = useCallback((agentId, status) => {
     setAgentStates(prev => ({ ...prev, [agentId]: status }));
+  }, []);
+
+  const clearReport = useCallback(() => {
+    setReport(null);
+    setAgentStates({});
+    setAgentLogs({});
+    setError(null);
   }, []);
 
   const loadReport = useCallback((savedReport) => {
@@ -286,5 +293,6 @@ export function useAgenticPipeline() {
     reportRef,
     runAgenticPipeline,
     loadReport,
+    clearReport,
   };
 }

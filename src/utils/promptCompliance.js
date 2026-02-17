@@ -1,18 +1,7 @@
 // Validaciones específicas del prompt de inteligencia política digital
 export function validatePromptCompliance(report) {
   const issues = [];
-
-  // Validar existencia de Juan Carlos Pinzón como primer candidato
-  if (report?.archetype?.candidates?.length > 0) {
-    const firstCandidate = report.archetype.candidates[0];
-    if (!firstCandidate?.name?.toLowerCase().includes('juan carlos pinzón')) {
-      issues.push({
-        type: 'candidate_order',
-        message: 'Juan Carlos Pinzón debe ser analizado como primer candidato según especificación del prompt',
-        severity: 'high'
-      });
-    }
-  }
+  const territory = (report?.territory || '').toLowerCase();
 
   // Validar límites de caracteres en puntos positivos (máx 180 chars)
   if (report?.archetype?.positive_demands) {
