@@ -271,7 +271,7 @@ export function useAgenticPipeline() {
     } finally {
       setRunning(false);
     }
-  }, []); // Cerrar runAgenticPipeline
+  }, [territory, criteria]); // Lee siempre los valores actuales del input
 
   return {
     territory, setTerritory,
