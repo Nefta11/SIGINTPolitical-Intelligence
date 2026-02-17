@@ -21,7 +21,7 @@ export default function RateLimitInfo({ show, onDismiss }) {
       border: "1px solid var(--amber-border)",
       borderRadius: "var(--radius)",
       padding: "16px 20px",
-      boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
+      boxShadow: "var(--shadow-lg)",
       zIndex: 1000,
       animation: "slideInRight 0.3s ease"
     }}>
@@ -67,7 +67,7 @@ export default function RateLimitInfo({ show, onDismiss }) {
         El sistema está manejando automáticamente los límites de la API de Claude.
         <br />
         <strong>Los agentes continuarán procesando</strong> con estrategias inteligentes:
-        <br />• Delays de 8s entre agentes  
+        <br />• Delays de 2s entre agentes
         <br />• Hasta 5 reintentos con backoff exponencial
         <br />• Modelo fallback más económico si es necesario
       </div>

@@ -43,7 +43,7 @@ export default function App() {
       fontSize: 14,
     }}>
       <Header />
-      <main style={{ maxWidth: 920, margin: "0 auto", padding: "40px 28px 100px" }}>
+      <main style={{ maxWidth: 960, margin: "0 auto", padding: "40px 28px 100px" }}>
         <InputPanel
           territory={territory}
           setTerritory={setTerritory}

@@ -35,7 +35,8 @@ export default function PauseResumeControl({ show, onResume, onCancel, lastError
         left: 0,
         right: 0,
         bottom: 0,
-        background: "rgba(0,0,0,0.8)",
+        background: "rgba(15,17,23,0.45)",
+        backdropFilter: "blur(4px)",
         zIndex: 1999,
         animation: "fadeIn 0.3s ease"
       }} />
@@ -51,7 +52,7 @@ export default function PauseResumeControl({ show, onResume, onCancel, lastError
         borderRadius: "var(--radius-lg)",
         padding: "32px 40px",
         maxWidth: 520,
-        boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+        boxShadow: "var(--shadow-lg)",
         zIndex: 2000,
         animation: "fadeIn 0.3s ease, slideUp 0.3s ease"
       }}>

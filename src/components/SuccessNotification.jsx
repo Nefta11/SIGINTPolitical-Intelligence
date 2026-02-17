@@ -27,7 +27,7 @@ export default function SuccessNotification({ show, onDismiss, reportData }) {
       border: "1px solid var(--green-border)",
       borderRadius: "var(--radius)",
       padding: "20px 24px",
-      boxShadow: "0 12px 40px rgba(52,211,153,0.15)",
+      boxShadow: "var(--shadow-lg)",
       zIndex: 1000,
       animation: "slideInRight 0.4s ease"
     }}>

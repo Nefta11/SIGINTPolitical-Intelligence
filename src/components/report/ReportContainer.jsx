@@ -17,38 +17,35 @@ const ReportContainer = forwardRef(function ReportContainer({ report, reportElem
   const validation = validatePromptCompliance(report);
 
   return (
-    <div ref={ref} style={{ 
-      animation: "fadeIn 0.8s ease, slideUp 0.6s ease",
+    <div ref={ref} style={{
+      animation: "fadeIn 0.7s ease, slideUp 0.5s ease",
       marginTop: 40
     }}>
-      
-      {/* Banner de éxito */}
+
+      {/* Banner cabecera */}
       <div style={{
-        background: "linear-gradient(135deg, var(--green-soft), var(--accent-soft))",
-        border: "1px solid var(--green-border)",
+        background: "linear-gradient(135deg, var(--accent-soft) 0%, rgba(124,58,237,0.06) 100%)",
+        border: "1px solid var(--accent-border)",
         borderRadius: "var(--radius-lg)",
-        padding: "20px 24px",
-        marginBottom: 20,
-        textAlign: "center"
+        padding: "18px 24px",
+        marginBottom: 16,
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        flexWrap: "wrap", gap: 10,
       }}>
         <div style={{
-          fontSize: 14,
-          fontFamily: "var(--mono)",
-          fontWeight: 600,
-          color: "var(--green)",
-          letterSpacing: 1,
-          marginBottom: 8
+          fontSize: 12, fontFamily: "var(--mono)", fontWeight: 700,
+          color: "var(--accent)", letterSpacing: 1.5,
         }}>
-          🎯 REPORTE DE INTELIGENCIA POLÍTICA DIGITAL
+          REPORTE DE INTELIGENCIA POLÍTICA DIGITAL
         </div>
-        <div style={{
-          fontSize: 13,
-          color: "var(--text-2)",
-          lineHeight: 1.6
-        }}>
-          Análisis completo para <strong>{report.territory}</strong> • 
-          Criterio: <strong>{report.criteria}</strong> • 
-          {report.timestamp && new Date(report.timestamp).toLocaleDateString("es")}
+        <div style={{ fontSize: 13, color: "var(--text-3)" }}>
+          <strong style={{ color: "var(--text)" }}>{report.territory}</strong>
+          <span style={{ margin: "0 8px", color: "var(--border)" }}>·</span>
+          {report.criteria}
+          <span style={{ margin: "0 8px", color: "var(--border)" }}>·</span>
+          <span style={{ fontFamily: "var(--mono)", fontSize: 11 }}>
+            {report.timestamp && new Date(report.timestamp).toLocaleDateString("es")}
+          </span>
         </div>
       </div>
 
@@ -58,6 +55,7 @@ const ReportContainer = forwardRef(function ReportContainer({ report, reportElem
         border: "1px solid var(--glass-border)",
         borderRadius: "var(--radius-lg)",
         padding: "40px 36px",
+        boxShadow: "var(--shadow)",
       }}>
         <ReportHeader report={report} />
         
