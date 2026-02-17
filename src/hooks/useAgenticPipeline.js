@@ -136,8 +136,8 @@ export function useAgenticPipeline() {
       setAgentStatus("recon", "done");
 
       // Delay entre agentes para evitar rate limits
-      addLog("recon", "⏳ Esperando 8s antes del siguiente agente...", "info");
-      await new Promise(resolve => setTimeout(resolve, 8000));
+      addLog("recon", "⏳ Esperando 2s antes del siguiente agente...", "info");
+      await new Promise(resolve => setTimeout(resolve, 2000));
 
       // AGENT 2: QUANT
       setAgentStatus("quant", "running");
@@ -158,8 +158,8 @@ export function useAgenticPipeline() {
       setAgentStatus("quant", "done");
 
       // Delay entre agentes para evitar rate limits  
-      addLog("quant", "⏳ Esperando 8s antes del siguiente agente...", "info");
-      await new Promise(resolve => setTimeout(resolve, 8000));
+      addLog("quant", "⏳ Esperando 2s antes del siguiente agente...", "info");
+      await new Promise(resolve => setTimeout(resolve, 2000));
 
       // AGENT 3: ARCHETYPE
       setAgentStatus("archetype", "running");
@@ -180,8 +180,8 @@ export function useAgenticPipeline() {
       setAgentStatus("archetype", "done");
 
       // Delay entre agentes para evitar rate limits
-      addLog("archetype", "⏳ Esperando 8s antes del siguiente agente...", "info");
-      await new Promise(resolve => setTimeout(resolve, 8000));
+      addLog("archetype", "⏳ Esperando 2s antes del siguiente agente...", "info");
+      await new Promise(resolve => setTimeout(resolve, 2000));
 
       // AGENT 4: SYNTHESIS
       setAgentStatus("synthesis", "running");

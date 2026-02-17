@@ -11,7 +11,11 @@
       "Bash(echo:*)",
       "Bash(cmd /c \"taskkill /F /PID 11020\")",
       "Bash(cmd /c \"taskkill /F /PID 11020 && echo OK\")",
-      "Bash(powershell -Command \"Stop-Process -Id 11020 -Force -ErrorAction SilentlyContinue; Start-Sleep 1; \\(Get-NetTCPConnection -LocalPort 3001 -ErrorAction SilentlyContinue\\).Count\")"
+      "Bash(powershell -Command \"Stop-Process -Id 11020 -Force -ErrorAction SilentlyContinue; Start-Sleep 1; \\(Get-NetTCPConnection -LocalPort 3001 -ErrorAction SilentlyContinue\\).Count\")",
+      "Bash(cmd /c \"npm list html2pdf.js 2>&1\")",
+      "Bash(powershell -Command \"Get-Content package.json\")",
+      "Bash(powershell -Command \"Test-Path ''C:\\\\Users\\\\nefta\\\\Downloads\\\\Sistema\\\\node_modules\\\\html2pdf.js''\")",
+      "Bash(powershell -Command \"Select-String -Path ''C:\\\\Users\\\\nefta\\\\Downloads\\\\Sistema\\\\src\\\\hooks\\\\useAgenticPipeline.js'' -Pattern ''Esperando''\")"
     ]
   }
 }

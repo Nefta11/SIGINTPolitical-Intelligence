@@ -53,7 +53,7 @@ const ReportContainer = forwardRef(function ReportContainer({ report, reportElem
       </div>
 
       <ReportActions reportRef={reportElementRef} report={report} />
-      <div ref={reportElementRef} style={{
+      <div ref={reportElementRef} data-pdf-root style={{
         background: "var(--glass)",
         border: "1px solid var(--glass-border)",
         borderRadius: "var(--radius-lg)",
