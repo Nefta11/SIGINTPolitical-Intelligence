@@ -15,7 +15,8 @@
       "Bash(cmd /c \"npm list html2pdf.js 2>&1\")",
       "Bash(powershell -Command \"Get-Content package.json\")",
       "Bash(powershell -Command \"Test-Path ''C:\\\\Users\\\\nefta\\\\Downloads\\\\Sistema\\\\node_modules\\\\html2pdf.js''\")",
-      "Bash(powershell -Command \"Select-String -Path ''C:\\\\Users\\\\nefta\\\\Downloads\\\\Sistema\\\\src\\\\hooks\\\\useAgenticPipeline.js'' -Pattern ''Esperando''\")"
+      "Bash(powershell -Command \"Select-String -Path ''C:\\\\Users\\\\nefta\\\\Downloads\\\\Sistema\\\\src\\\\hooks\\\\useAgenticPipeline.js'' -Pattern ''Esperando''\")",
+      "Bash(powershell -Command:*)"
     ]
   }
 }

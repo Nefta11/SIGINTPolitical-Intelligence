@@ -280,42 +280,44 @@ export function buildArchetypePrompts(territory, criteria, reconData) {
   const system = `Eres un experto en psicología política y arquetipos de liderazgo. Actúa como analista de inteligencia política digital.
 
 Tu método:
-1. Analiza INDUCTIVAMENTE los deseos, quejas, expectativas y rechazos que la población digital expresa sobre el gobierno del territorio
+1. Analiza INDUCTIVAMENTE los deseos, quejas, expectativas y rechazos que la población digital expresa sobre el gobierno del territorio analizado
 2. El arquetipo debe representar la FUNCIÓN DE LIDERAZGO que la ciudadanía demanda — no el partido ni la ideología
 3. Para cada conclusión, indica la SEÑAL DIGITAL que la sostiene
 4. Distingue entre lo OBSERVADO en señal digital y lo INFERIDO de patrones
+
+IMPORTANTE: El territorio de análisis es "${territory}". Todos los candidatos, narrativas y arquetipos deben corresponder EXCLUSIVAMENTE a ${territory}.
 
 Responde SOLO en JSON válido sin markdown. Tono de consultoría política de alto nivel.`;
 
   const user = `Analiza las señales digitales de ${territory} y determina el arquetipo de liderazgo demandado.
 
+TERRITORIO DE ANÁLISIS: ${territory}
+CRITERIO DE MASA: "${criteria}"
 Señales de RECON: ${JSON.stringify(reconData).slice(0, 2500)}
-Criterio de masa: "${criteria}"
 Narrativa dominante: ${reconData.dominant_narrative || "N/A"}
 
 TAXONOMÍA DE ARQUETIPOS (usa EXACTAMENTE estos nombres):
 ${ARCHETYPE_TAXONOMY.map(a => `- ${a.name}: Adjetivos[${a.adj.join(", ")}] | Contra-adjetivos[${a.contra.join(", ")}]`).join("\n")}
 
 ═══ SECCIÓN 1: ARQUETIPO ═══
-Determina inductivamente qué arquetipo emerge de las quejas, deseos y expectativas digitales.
+Determina inductivamente qué arquetipo emerge de las quejas, deseos y expectativas digitales en ${territory}.
 
 ═══ SECCIÓN 1.1: TRES PUNTOS POSITIVOS ═══
 Cada punto debe:
 - Empezar con verbo en presente ("Esperan...", "Valoran...", "Demandan...")
 - MÁXIMO 180 CARACTERES (validar longitud estrictamente)
-- Reflejar expectativas CONCRETAS expresadas digitalmente, no generalidades
-- Basado en el contexto electoral presidencial de Colombia
+- Reflejar expectativas CONCRETAS expresadas digitalmente en ${territory}, no generalidades
+- Basado en el contexto electoral de ${territory}
 
 ═══ SECCIÓN 1.2: TRES PUNTOS NEGATIVOS ═══
 Cada punto debe:
 - Empezar con verbo en presente ("Rechazan...", "Critican...", "Repudian...")
 - MÁXIMO 140 CARACTERES (validar longitud estrictamente)
-- Reflejar rechazos o frustraciones CONCRETAS expresadas digitalmente
-- Basado en el contexto electoral presidencial de Colombia
+- Reflejar rechazos o frustraciones CONCRETAS expresadas digitalmente en ${territory}
 
 ═══ SECCIÓN 2: CANDIDATOS ═══
-Identifica los 3 candidatos con mayores posibilidades de contender a la presidencia de Colombia en el próximo período + Juan Carlos Pinzón (analízalo PRIMERO).
-Basándote en presencia digital activa, menciones, y relevancia en la conversación política de Colombia.
+Identifica los 4 candidatos con mayores posibilidades de contender al cargo ejecutivo principal de ${territory} en el próximo período.
+Basándote EXCLUSIVAMENTE en presencia digital activa, menciones, y relevancia en la conversación política de ${territory}.
 
 Para cada candidato: 4 adjetivos que el universo digital le atribuye (no tu opinión).
 REGLA DE RESALTE:
@@ -323,27 +325,28 @@ REGLA DE RESALTE:
 - Si coincide con los CONTRA-adjetivos del arquetipo → márcalo con "contra": true
 
 **IMPORTANTE**: Los puntos positivos deben tener máximo 180 caracteres. Los puntos negativos máximo 140 caracteres.
+**IMPORTANTE**: Los candidatos deben ser REALES y ACTUALES de ${territory}. No uses candidatos de otros países.
 
 JSON:
 {
   "primary_archetype": "nombre EXACTO de la taxonomía",
   "confidence": 0.0,
-  "reasoning": "explicación detallada basada en señales digitales reales, mínimo 200 palabras, indicando qué señales son OBSERVADAS y cuáles INFERIDAS",
+  "reasoning": "explicación detallada basada en señales digitales reales de ${territory}, mínimo 200 palabras, indicando qué señales son OBSERVADAS y cuáles INFERIDAS",
   "positive_demands": [
-    { "text": "Verbo en presente + expectativa concreta (máx 180 chars)", "signal": "señal digital específica", "observation_type": "observado/inferido" },
+    { "text": "Verbo en presente + expectativa concreta de ${territory} (máx 180 chars)", "signal": "señal digital específica", "observation_type": "observado/inferido" },
     { "text": "...", "signal": "...", "observation_type": "..." },
     { "text": "...", "signal": "...", "observation_type": "..." }
   ],
   "negative_rejections": [
-    { "text": "Verbo en presente + rechazo concreto (máx 140 chars)", "signal": "señal digital específica", "observation_type": "observado/inferido" },
+    { "text": "Verbo en presente + rechazo concreto en ${territory} (máx 140 chars)", "signal": "señal digital específica", "observation_type": "observado/inferido" },
     { "text": "...", "signal": "...", "observation_type": "..." },
     { "text": "...", "signal": "...", "observation_type": "..." }
   ],
   "secondary_archetype": "segundo arquetipo más relevante",
   "candidates": [
     {
-      "name": "Juan Carlos Pinzón",
-      "party": "partido o plataforma (buscar información real)",
+      "name": "nombre completo real del candidato 1 de ${territory}",
+      "party": "partido o plataforma real en ${territory}",
       "adjectives": [
         { "word": "adjetivo1", "match": false, "contra": false },
         { "word": "adjetivo2", "match": false, "contra": false },
@@ -351,12 +354,10 @@ JSON:
         { "word": "adjetivo4", "match": false, "contra": false }
       ],
       "digital_signal": "señal digital predominante que sustenta esta adjetivación",
-      "archetype_match_score": 0.0,
-      "analysis_priority": 1,
-      "analysis_note": "Analizado primero por instrucción específica del prompt"
+      "archetype_match_score": 0.0
     },
     {
-      "name": "candidato 2 (nombre completo real)",
+      "name": "nombre completo real del candidato 2 de ${territory}",
       "party": "partido",
       "adjectives": [
         { "word": "adj1", "match": false, "contra": false },
@@ -368,7 +369,7 @@ JSON:
       "archetype_match_score": 0.0
     },
     {
-      "name": "candidato 3",
+      "name": "nombre completo real del candidato 3 de ${territory}",
       "party": "partido",
       "adjectives": [
         { "word": "adj1", "match": false, "contra": false },
@@ -380,7 +381,7 @@ JSON:
       "archetype_match_score": 0.0
     },
     {
-      "name": "candidato 4",
+      "name": "nombre completo real del candidato 4 de ${territory}",
       "party": "partido",
       "adjectives": [
         { "word": "adj1", "match": false, "contra": false },
