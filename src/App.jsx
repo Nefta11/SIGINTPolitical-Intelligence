@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { useAgenticPipeline } from './hooks/useAgenticPipeline';
+import { useTheme } from './hooks/useTheme';
 import Header from './components/Header';
 import InputPanel from './components/InputPanel';
 import AgentGrid from './components/AgentGrid';
@@ -11,6 +12,8 @@ import SuccessNotification from './components/SuccessNotification';
 import PauseResumeControl from './components/PauseResumeControl';
 
 export default function App() {
+  const { dark, toggle } = useTheme();
+
   const {
     territory, setTerritory,
     criteria, setCriteria,
@@ -24,7 +27,6 @@ export default function App() {
     showSuccessNotification,
     setShowSuccessNotification,
     showPauseControl,
-    pausedState,
     handlePauseResume,
     handleCancelAnalysis,
     reportRef,
@@ -42,7 +44,7 @@ export default function App() {
       fontFamily: "var(--sans)",
       fontSize: 14,
     }}>
-      <Header />
+      <Header dark={dark} onToggleTheme={toggle} />
       <main style={{ maxWidth: 960, margin: "0 auto", padding: "40px 28px 100px" }}>
         <InputPanel
           territory={territory}
@@ -57,14 +59,14 @@ export default function App() {
         <ErrorBanner error={error} />
         <ReportContainer ref={reportRef} report={report} reportElementRef={reportElementRef} />
       </main>
-      
-      <RateLimitInfo 
-        show={showRateLimitInfo} 
-        onDismiss={() => setShowRateLimitInfo(false)} 
+
+      <RateLimitInfo
+        show={showRateLimitInfo}
+        onDismiss={() => setShowRateLimitInfo(false)}
       />
-      
-      <SuccessNotification 
-        show={showSuccessNotification} 
+
+      <SuccessNotification
+        show={showSuccessNotification}
         onDismiss={() => setShowSuccessNotification(false)}
         reportData={report}
       />
