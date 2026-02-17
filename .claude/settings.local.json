@@ -8,7 +8,10 @@
       "Bash(findstr:*)",
       "Bash(taskkill:*)",
       "Bash(cmd /c \"taskkill /PID 11020 /F\")",
-      "Bash(echo:*)"
+      "Bash(echo:*)",
+      "Bash(cmd /c \"taskkill /F /PID 11020\")",
+      "Bash(cmd /c \"taskkill /F /PID 11020 && echo OK\")",
+      "Bash(powershell -Command \"Stop-Process -Id 11020 -Force -ErrorAction SilentlyContinue; Start-Sleep 1; \\(Get-NetTCPConnection -LocalPort 3001 -ErrorAction SilentlyContinue\\).Count\")"
     ]
   }
 }
